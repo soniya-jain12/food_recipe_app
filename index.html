@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Finder - Cook with What You Have</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-utensils me-2"></i>Recipe Finder
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#search">Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <h1 class="hero-title">Cook with What You Have</h1>
+        <p class="hero-subtitle">
+          Transform your ingredients into delicious meals
+        </p>
+        <button class="btn search-btn" onclick="scrollToSearch()">
+          <i class="fas fa-search me-2"></i>Start Cooking
+        </button>
+      </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search" class="py-5">
+      <div class="container">
+        <div class="search-container">
+          <h2 class="text-center mb-4" style="color: var(--dark-color)">
+            <i class="fas fa-magic me-2"></i>What's in Your Kitchen?
+          </h2>
+
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  id="ingredientInput"
+                  class="form-control ingredient-input"
+                  placeholder="Enter an ingredient (e.g., chicken, tomato, rice)"
+                />
+                <button
+                  class="btn add-ingredient-btn"
+                  onclick="addIngredient()"
+                >
+                  <i class="fas fa-plus"></i> Add
+                </button>
+              </div>
+
+              <div id="ingredientTags" class="mb-4"></div>
+
+              <div class="text-center">
+                <button
+                  id="searchBtn"
+                  class="btn search-btn"
+                  onclick="searchRecipes()"
+                  disabled
+                >
+                  <i class="fas fa-search me-2"></i>Find Recipes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="py-5" style="display: none">
+      <div class="container">
+        <h2 class="text-center mb-5" style="color: white">
+          <i class="fas fa-chef-hat me-2"></i>Recipe Suggestions
+        </h2>
+        <div id="recipeResults" class="row"></div>
+      </div>
+    </section>
+
+    <!-- Recipe Modal -->
+    <div class="modal fade" id="recipeModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalRecipeTitle"></h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="modalRecipeBody">
+            <!-- Recipe details will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="search-container text-center">
+              <h2 style="color: var(--dark-color); margin-bottom: 1rem">
+                <i class="fas fa-heart me-2"></i>About Recipe Finder
+              </h2>
+              <p style="color: #666; font-size: 1.1rem; line-height: 1.6">
+                Never waste food again! Our smart recipe finder helps you create
+                delicious meals using the ingredients you already have at home.
+                Simply add your available ingredients, and we'll suggest amazing
+                recipes you can make right now.
+              </p>
+              <div class="row mt-4">
+                <div class="col-md-4 mb-3">
+                  <i
+                    class="fas fa-lightbulb fa-2x"
+                    style="color: var(--primary-color)"
+                  ></i>
+                  <h5 class="mt-2" style="color: var(--dark-color)">
+                    Smart Suggestions
+                  </h5>
+                  <p style="color: #666">AI-powered recipe recommendations</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <i
+                    class="fas fa-leaf fa-2x"
+                    style="color: var(--accent-color)"
+                  ></i>
+                  <h5 class="mt-2" style="color: var(--dark-color)">
+                    Reduce Waste
+                  </h5>
+                  <p style="color: #666">Use what you have, waste less food</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <i
+                    class="fas fa-clock fa-2x"
+                    style="color: var(--secondary-color)"
+                  ></i>
+                  <h5 class="mt-2" style="color: var(--dark-color)">
+                    Save Time
+                  </h5>
+                  <p style="color: #666">Quick and easy meal planning</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
